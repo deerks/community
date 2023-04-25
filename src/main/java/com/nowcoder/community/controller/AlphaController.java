@@ -1,6 +1,8 @@
 package com.nowcoder.community.controller;
 
 import com.nowcoder.community.service.AlphaService;
+import com.nowcoder.community.util.CommunityUtil;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @Controller
-@RequestMapping("/community/alpha")
+@RequestMapping("/alpha")
 public class AlphaController {
     @RequestMapping("/hello")
     @ResponseBody
@@ -107,5 +109,26 @@ public class AlphaController {
        map.put("name","Juice");
        map.put("age",22);
        return map;
+    }
+
+    //Cookie实例
+    @RequestMapping(path = "/cookie/set", method = RequestMethod.GET)
+    @ResponseBody
+    public String setCookie(HttpServletResponse response) {
+        //创建Cookie
+        Cookie cookie = new Cookie("code", CommunityUtil.generateUUID());
+        //创建Cookie生效范围
+        cookie.setPath("/community/alpha");
+        //设置Cookie生存时间
+        cookie.setMaxAge(60 * 10);
+        //发送Cookie
+        response.addCookie(cookie);
+        return "set cookie";
+    }
+    @RequestMapping(path = "/cookie/get", method = RequestMethod.GET)
+    @ResponseBody
+    public String getCookie(@CookieValue("code") String code) {
+        System.out.println(code);
+        return "get cookie";
     }
 }
