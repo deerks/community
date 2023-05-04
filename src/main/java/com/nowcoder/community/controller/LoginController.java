@@ -4,6 +4,7 @@ import com.google.code.kaptcha.Producer;
 import com.nowcoder.community.entity.User;
 import com.nowcoder.community.service.UserService;
 import com.nowcoder.community.util.CommunityConstant;
+import com.nowcoder.community.util.CommunityUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,10 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
 import jakarta.servlet.http.Cookie;
@@ -134,4 +132,13 @@ public class LoginController implements CommunityConstant {
         userService.logout(ticket);
         return "redirect:/login";
     }
+
+    //获取验证码并验证邮箱是否存在
+//    @RequestMapping(path = "/foget/code", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String getForgetCode(String email, HttpSession session, Model model) {
+//        if(StringUtils.isBlank(email)) {
+//            return CommunityUtil.getJSONString(1, "邮箱不能为空");
+//        }
+//    }
 }
