@@ -106,10 +106,10 @@ public class LoginController implements CommunityConstant {
 
         //检查验证码
         String kaptcha = session.getAttribute("kaptcha").toString();
-        if (StringUtils.isBlank(kaptcha) || StringUtils.isBlank(code) || !kaptcha.equalsIgnoreCase(code)) {
-            model.addAttribute("codeMsg", "验证码错误");
-            return "/site/login";
-        }
+//        if (StringUtils.isBlank(kaptcha) || StringUtils.isBlank(code) || !kaptcha.equalsIgnoreCase(code)) {
+//            model.addAttribute("codeMsg", "验证码错误");
+//            return "/site/login";
+//        }
 
         //检查账号、密码
         int expiredSeconds = remember ? REMEMBER_EXPIRED_SECONDS : DEFAULT_EXPIRED_SECONDS;

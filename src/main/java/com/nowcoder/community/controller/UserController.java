@@ -1,5 +1,6 @@
 package com.nowcoder.community.controller;
 
+import com.nowcoder.community.annotation.LoginRequired;
 import com.nowcoder.community.entity.User;
 import com.nowcoder.community.service.UserService;
 import com.nowcoder.community.util.CommunityUtil;
@@ -43,11 +44,13 @@ public class UserController {
     @Autowired
     private HostHolder hostHolder;
 
+    @LoginRequired
     @RequestMapping(path = "/setting", method = RequestMethod.GET)
     public String getSettingPage() {
         return "/site/setting";
     }
 
+    @LoginRequired
     @RequestMapping(path = "/upload", method = RequestMethod.POST)
     public String uploadHeader(MultipartFile headerImage, Model model) {
         if (headerImage == null) {
@@ -62,7 +65,7 @@ public class UserController {
         }
 
         //生成随机文件名
-        fileName = CommunityUtil.generateUUID() + suffix;
+        fileName = CommunityUtil.generateUUID() + "." + suffix;
         //确定文件存放路径
         File dest = new File(uploadPath + "/" + fileName);
         try {
@@ -75,7 +78,7 @@ public class UserController {
 
         //更新当前用户的头像的路径(web访问路径)
         User user = hostHolder.getUser();
-        String headerUrl = domain + contextPath + "/user/header" + fileName;
+        String headerUrl = domain + contextPath + "/user/header/" + fileName;
         userService.updateHeader(user.getId(), headerUrl);
         return "redirect:/index";
     }
@@ -85,7 +88,7 @@ public class UserController {
         //服务器存放路径
         fileName = uploadPath + "/" + fileName;
         //获取文件后缀
-        String suffix = fileName.substring(fileName.lastIndexOf("."));
+        String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
         //响应图片
         response.setContentType("image/" + suffix);
         try (

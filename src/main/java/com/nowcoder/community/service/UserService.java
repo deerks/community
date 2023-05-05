@@ -64,12 +64,14 @@ public class UserService implements CommunityConstant {
         User u = userMapper.selectByName(user.getUsername());
         if (u != null) {
             map.put("usernameMsg", "该账号已存在！");
+            return map;
         }
 
         //验证邮箱
-        u = userMapper.selectByEmail(user.getEmail());
+        u = userMapper.selectByEmail("123");
         if (u != null) {
             map.put("emailMsg", "该邮箱已被注册！");
+            return map;
         }
 
         //注册用户
@@ -127,10 +129,10 @@ public class UserService implements CommunityConstant {
         }
 
         //验证状态
-        if (user.getStatus() == 0) {
-            map.put("usernameMsg", "账号未激活");
-            return map;
-        }
+//        if (user.getStatus() == 0) {
+//            map.put("usernameMsg", "账号未激活");
+//            return map;
+//        }
 
         //验证密码
         password = CommunityUtil.md5(password + user.getSalt());
