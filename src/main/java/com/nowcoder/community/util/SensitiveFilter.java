@@ -80,7 +80,10 @@ public class SensitiveFilter {
         //记录结果
         StringBuilder sb = new StringBuilder();
 
-        while (position < text.length()) {
+        while (begin < text.length()) {
+            if (position >= text.length()) {
+                break;
+            }
             char c = text.charAt(position);
             //跳过特殊符号
             if (isSymbol(c)) {
