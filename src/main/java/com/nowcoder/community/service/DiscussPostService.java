@@ -39,5 +39,10 @@ public class DiscussPostService {
         return discussPostMapper.insertDiscussPost(post);
     }
 
+    //增加根据id查询帖子的功能
+    public DiscussPost findDiscussPostById(int id) {
+        return discussPostMapper.selectDiscussPostById(id);
+    }
+
 
 }
