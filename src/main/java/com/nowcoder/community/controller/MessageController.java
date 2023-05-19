@@ -145,4 +145,27 @@ public class MessageController {
 
         return CommunityUtil.getJSONString(0);
     }
+
+//    //删除私信
+//    @RequestMapping(path = "/letter/detail/{conversationId}", method = RequestMethod.GET)
+//    public String deleteLetterDetail(@PathVariable("conversationId") String conversationId, int id, Page page, Model model) {
+//        // 分页信息
+//        page.setLimit(5);
+//        page.setPath("/letter/detail/" + conversationId);
+//        page.setRows(messageService.findLetterCount(conversationId));
+//
+//        // 私信列表
+//        List<Message> letterList = messageService.findLetters(conversationId, page.getOffset(), page.getLimit());
+//
+//        //设置为删除态
+//        List<Integer> ids = new ArrayList<>();
+//        ids.add(id);
+//        if (!ids.isEmpty()) {
+//            messageService.deleteMessage(ids);
+//        }
+//
+//        //返回模板
+//        return "/site/letter-detail";
+//    }
+
 }

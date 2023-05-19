@@ -47,4 +47,10 @@ public class HomeController {
         return "/index";
     }
 
+    //出现异常后，重定向到error页面
+    @RequestMapping(path = "/error", method = RequestMethod.GET)
+    public String getErrorPage() {
+        return "/error/500";
+    }
+
 }

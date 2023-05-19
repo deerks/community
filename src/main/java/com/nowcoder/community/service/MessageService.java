@@ -49,4 +49,9 @@ public class MessageService {
     public int readMessage(List<Integer> ids) {
         return messageMapper.updateStatus(ids, 1);
     }
+
+//    //删除私信
+//    public int deleteMessage(List<Integer> ids) {
+//        return messageMapper.updateStatus(ids, 2);
+//    }
 }
