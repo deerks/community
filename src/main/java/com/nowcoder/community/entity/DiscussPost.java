@@ -1,9 +1,15 @@
 package com.nowcoder.community.entity;
 
 import java.util.Date;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
+@Document(indexName = "discusspost")
 public class DiscussPost {
 
+    @Id
     private int id;
     private int userId;
     private String title;
