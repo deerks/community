@@ -96,7 +96,7 @@ public class ElasticsearchTests {
         System.out.println(page.getNumber());
         System.out.println(page.getSize());
         for (DiscussPost post : page) {
-            System.out.println(post);
+           System.out.println(post);
         }
     }
 
